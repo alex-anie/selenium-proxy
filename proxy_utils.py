@@ -1,5 +1,9 @@
 import requests
 
+from colorama import init, Fore, Style
+init(autoreset=True)
+
+
 # List of proxies to check from https://free-proxy-list.net/en/#
 proxy_list = [
     "85.215.64.49:80",
@@ -45,12 +49,14 @@ def find_working_proxy(test_url, proxies=proxy_list, timeout=5):
     for proxy in proxies:
         proxy_conf = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
         try:
+            print(Fore.YELLOW + f"=== Please wait! program is current routing for the correct `proxy` ===")
+
             response = requests.get(test_url, proxies=proxy_conf, timeout=timeout)
             if response.status_code == 200:
-                print(f"✓ Working proxy found: {proxy}")
+                print(Fore.GREEN + f"✓ Working proxy found: {proxy}\033[0m")
                 return proxy
             else:
-                print(f"× Bad status from {proxy}: {response.status_code}")
+                print(Fore.RED + f"× Bad status from {proxy}: {response.status_code}")
         except Exception as e:
-            print(f"× Proxy failed: {proxy} — {e}")
+            print(Fore.RED + f"× Proxy failed: {proxy} — {e}")
     return None
