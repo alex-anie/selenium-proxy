@@ -14,6 +14,7 @@ test_url = "http://books.toscrape.com/catalogue/the-book-of-basketball-the-nba-a
 
 # Get a healthy proxy
 working_proxy = find_working_proxy(test_url)
+print(f">>> working proxy: {working_proxy}")
 if not working_proxy:
     print("❌ No working proxy found.")
     exit()
