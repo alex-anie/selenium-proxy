@@ -30,11 +30,11 @@ if not working_proxy:
 options = webdriver.ChromeOptions()
 options.add_argument(f'--proxy-server=http://{working_proxy}')
 options.add_argument('--disable-blink-features=AutomationControlled')
-options.add_argument('--headless=new')
+# options.add_argument('--headless=new')
 
 lt_capabilities = {
     "browserName": "Chrome",
-    "browserVersion": "latest",  # or specify "138.0" if available on LT
+    "browserVersion": "latest", 
     "platformName": "Windows 11",
     "seCdp": True,
     "LT:Options": {
@@ -43,7 +43,7 @@ lt_capabilities = {
         "build": "Selenium Proxy Python tests",
         "project": "Running Proxy Scripts",
         "name": "Book Scrape Test with Proxy",
-        "selenium_version": "4.19.0",  # Use actual Selenium version you're running
+        "selenium_version": "4.19.0", 
         "w3c": True,
         "visual": True,
         "video": True,
