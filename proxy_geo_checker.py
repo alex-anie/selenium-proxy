@@ -1,4 +1,3 @@
-import time
 import random
 import json
 from selenium import webdriver
