@@ -102,4 +102,3 @@ This project was built as a comprehensive demo of:
 Each script uses a shared proxy-checking utility that verifies which proxies are functional before running the main test. This allows users to easily plug in any of these examples for automation, scraping, or learning purposes.
 
 ---
-
