@@ -49,7 +49,7 @@ def find_working_proxy(test_url, proxies=proxy_list, timeout=5):
     for proxy in proxies:
         proxy_conf = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
         try:
-            print(Fore.YELLOW + f"=== Please wait! program is currently routing for the correct `proxy` ===")
+            print(Fore.YELLOW + f"Please wait! program is currently routing for the correct `proxy`")
 
             response = requests.get(test_url, proxies=proxy_conf, timeout=timeout)
             if response.status_code == 200:

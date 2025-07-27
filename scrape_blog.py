@@ -72,6 +72,6 @@ for i, card in enumerate(all_cards, 1):
     print(f"  Comments: {card['comments']}")
     print(f"  Views   : {card['views']}")
 
-# ----- Cleanup -----
+# ----- Cleanup ----------------------------
 driver.quit()
 
