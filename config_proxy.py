@@ -1,0 +1,67 @@
+
+import requests
+from colorama import Fore, init
+init(autoreset=True)
+
+# List of proxies to check from https://free-proxy-list.net/en/#
+proxy_list = [
+    "85.215.64.49:80",
+    "161.35.70.249:8080",
+    "139.59.1.14:80",
+    "113.160.132.195:8080",
+    "123.30.154.171:7777",
+    "8.211.194.78:1081",
+    "47.238.134.126:81",
+    "35.180.23.174:3128",
+    "133.18.234.13:80",
+    "219.65.73.81:80",
+    "114.6.27.84:8520",
+    "4.156.78.45:80",
+    "3.101.76.84:18242",
+    "205.198.65.77:80",
+    "195.158.8.123:3128",
+    "5.78.129.53:80",
+    "4.245.123.244:80",
+    "92.67.186.210:80",
+    "23.247.136.248:80",
+    "23.247.136.254:80",
+    "78.47.127.91:80",
+    "45.146.163.31:80",
+    "4.195.16.140:80",
+    "108.141.130.146:80",
+    "124.108.6.20:8085",
+    "59.7.246.4:80",
+    "95.47.239.65:3128",
+    "89.117.145.245:3128",
+    "179.60.53.25:999",
+    "41.59.90.171:80",
+    "185.123.101.160:80",
+    "198.49.68.80:80",
+    "123.141.181.24:5031",
+    "103.75.119.185:80",
+    "37.187.74.125:80",
+    "41.191.203.161:80"
+]
+
+def find_https_proxy(test_url="https://ipinfo.io/json", retries=3, timeout=5):
+    """Try multiple times to find a proxy that supports HTTPS."""
+    attempt = 0
+    while attempt < retries:
+        for proxy in proxy_list:
+            proxy_conf = {
+                "http": f"http://{proxy}",
+                "https": f"http://{proxy}"
+            }
+            try:
+                print(Fore.YELLOW + f"🔍 Attempting HTTPS proxy test: {proxy}")
+                response = requests.get(test_url, proxies=proxy_conf, timeout=timeout)
+                if response.status_code == 200:
+                    print(Fore.GREEN + f"✅ HTTPS Proxy Found: {proxy}")
+                    return proxy
+            except Exception as e:
+                print(Fore.RED + f"⛔ Proxy Failed: {proxy} — {str(e).split(':')[0]}")
+        attempt += 1
+        print(Fore.CYAN + f"🔁 Retrying proxy pool (Attempt {attempt + 1}/{retries})...\n")
+
+    print(Fore.RED + "❌ No HTTPS proxy found after retries.\n")
+    return None

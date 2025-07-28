@@ -16,7 +16,7 @@ proxy_user = "your_username"       # Replace with your proxy username
 proxy_pass = "your_password"       # Replace with your proxy password
 
 # Target URL to visit after setting up the proxy
-test_url = "https://ipinfo.io/json"  # You can replace with any website you want
+test_url = "https://ipinfo.io/json" 
 
 # -------------------------
 # Create Chrome extension to handle proxy auth
@@ -104,7 +104,7 @@ driver = webdriver.Chrome(
 # Visit the target URL
 # -------------------------
 try:
-    print("🔄 Opening target page using authenticated proxy...\n")
+    print("Opening target page using authenticated proxy...\n")
     driver.get(test_url)
     time.sleep(3)
 
